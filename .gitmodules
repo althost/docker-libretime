@@ -1,0 +1,4 @@
+[submodule "libretime"]
+	path = libretime
+	url = https://github.com/althost/docker-libretime
+	branch = upstart
