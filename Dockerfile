@@ -2,7 +2,7 @@
 # Dockerfile based on work of https://hub.docker.com/_/ubuntu-upstart/
 # and inspired by https://github.com/okvic77/docker-airtime
 #
-FROM ubuntu:14.04
+FROM ubuntu:trusty
 
 # ENV LANG en_US.UTF-8
 # ENV LANGUAGE en_US:en
@@ -21,6 +21,8 @@ RUN locale-gen --purge en_US.UTF-8 \
     && apt-get update && apt-get dist-upgrade -y \
     && apt-get install -y  python-psycopg2 nano \
         git rabbitmq-server apache2 curl postgresql postgresql-contrib
+
+ADD libretime/ /libretime_src/libretime
 #
 # Install libretime
 #
