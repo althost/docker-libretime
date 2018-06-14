@@ -60,7 +60,7 @@ RUN /usr/sbin/update-rc.d -f ondemand remove; \
 #
 COPY 1st_start.conf /etc/init
 
-RUN echo 'PassEnv HTTPS' > /etc/apache2/conf-enabled/expose-env.conf
+RUN echo 'SetEnv HTTPS 1' > /etc/apache2/conf-enabled/expose-env.conf
 
 VOLUME ["/etc/airtime", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
 
