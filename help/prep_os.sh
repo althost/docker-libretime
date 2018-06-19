@@ -44,5 +44,5 @@ echo "localhost:5432:airtime:airtime:airtime" > /root/.pgpass
 chmod 600 /root/.pgpass 
 
 # arreglar permisos
-mkdir /srv/airtime/stor
+mkdir -p /srv/airtime/stor
 chown -R www-data /srv/airtime/stor
