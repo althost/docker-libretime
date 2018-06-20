@@ -22,6 +22,10 @@ RUN locale-gen --purge en_US.UTF-8 \
     && apt-get install -y  python-psycopg2 nano \
         git rabbitmq-server apache2 curl postgresql postgresql-contrib
 
+# Install dependecies beforehand to speed up development
+COPY ./libretime/installer/lib/requirements-ubuntu-trusty.apt /tmp
+RUN apt-get update && apt-get -y -m --force-yes install $(grep -vE '^\s*#' /tmp/requirements-ubuntu-trusty.apt | tr '\n' ' ')
+
 ADD libretime/ /libretime_src/libretime
 #
 # Install libretime
