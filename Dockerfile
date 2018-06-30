@@ -59,11 +59,16 @@ RUN /usr/sbin/update-rc.d -f ondemand remove; \
 	done; \
 	echo '# /lib/init/fstab: cleared out for bare-bones Docker' > /lib/init/fstab
 
-#
+# install legacy silan due to bug #197
+# TODO clean this once it is merged to master
+RUN echo 'deb http://apt.sourcefabric.org/ trusty main' >> /etc/apt/sources.list \
+	&& apt-get update && apt-get install -y --force-yes sourcefabric-keyring \
+	&& apt-get update && apt-get install -y --force-yes --reinstall silan=0.3.2~trusty~sfo-1
+
 # copy the script for the 1st run
-#
 COPY 1st_start.conf /etc/init
 
+# pass HTTPS var to PHP server
 RUN echo 'SetEnv HTTPS 1' > /etc/apache2/conf-enabled/expose-env.conf
 
 VOLUME ["/etc/airtime", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
