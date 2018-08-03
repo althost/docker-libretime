@@ -1,3 +1,11 @@
+# Para correrlo en localhost
+docker run -d -p 80:80 -h="localhost" numericalatina/docker-libretime
+# para montar una carpeta para monitorizacion
+docker run -d -p 80:80 -h="localhost" -v /local/dir:/to/app numericalatina/docker-libretime
+
+# en local desactivar el ssl de apache
+echo 'SetEnv HTTPS 0' > /etc/apache2/conf-enabled/expose-env.conf && service apache2 reload
+
 # DOCKER Container for running libretime (www.libretime.org)
 
 # How to run 
