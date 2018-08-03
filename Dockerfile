@@ -74,6 +74,9 @@ RUN echo 'SetEnv HTTPS 1' > /etc/apache2/conf-enabled/expose-env.conf
 # watching folder kickstarter script into container
 COPY libretime/python_apps/libretime_watch/libretime_watch/start_watching.py /opt
 
+# fix cron upstart
+COPY help/cron.conf /etc/init/cron.conf
+
 VOLUME ["/etc/airtime", "/var/lib/postgresql", "/srv/airtime/stor", "/srv/airtime/watch"]
 
 EXPOSE 80 8000
